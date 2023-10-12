@@ -48,3 +48,46 @@ exports.blogdelete = async (req, res) => {
         res.status(500).json(err)
     }
 };
+exports.bloggetbyid = async (req, res) => {
+    try {
+     
+        let blogData = await bloguser.findById(req.params.id)
+
+        res.json(blogData);
+    } catch (error) {
+        console.log(error);
+        if (!error.status) {
+            error.status = 500;
+        }
+
+        res.status(error.status).json({ message: error.message });
+    }
+};
+// exports.getUserById = async (req, res) => {
+//     try {
+//         let userData = await bloguser.find({userId:req.params.id});
+
+//         if (!userData) {
+//             // Handle the case when the user is not found
+//             return res.status(404).json({ message: "blog not found" });
+//         }
+
+//         res.json(userData);
+//     } catch (error) {
+//         console.log(error);
+//         if (!error.status) {
+//             error.status = 500;
+//         }
+
+//         res.status(error.status).json({ message: error.message });
+//     }
+// };
+exports.getbyuserID = async(req, res) =>{
+    try{
+    let blogData = await bloguser.find({userId: req.params.id});
+    res.json(blogData);
+    // console.log(blogData[1]);
+    }catch(err){
+        console.log(err);
+    }
+}
