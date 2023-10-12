@@ -7,9 +7,11 @@ const userController = require('../controllers/userController');
 //Blog routes
 
 router.post("/bloguser/blogadd", blogController.blogadd);
-router.get("/bloguser/blogadd", blogController.blogget);
+router.get("/bloguser/blogget", blogController.blogget);
 router.put("/bloguser/blogupdate/:id", blogController.blogupdate);
 router.delete("/bloguser/blogdelete/:id", blogController.blogdelete);
+router.get("/bloguser/getbyuserID/:id", blogController.getbyuserID);
+
 
 //user routes
 router.post("/signup", userController.signup);

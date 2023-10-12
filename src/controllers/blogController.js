@@ -27,16 +27,15 @@ exports.blogget = async (req, res) => {
         res.status(error.status).json({ message: error.message });
     }
 };
-exports.blogupdate = async (req, res) => {
-    try{
-            const blogData = await bloguser.findByIdAndUpdate(req.params.id, { $set: req.body },
-            { new: true });
+// exports.blogupdate = async (req, res) => {
+//     try{
+//             const blogData = await bloguser.findByIdAndUpdate(req.params.id, { $set: req.body },);
             
-       res.json({data:blogData});
-        }catch(err){
-            res.status(500).json(err)
-        }
-};
+//        res.json({data:blogData});
+//         }catch(err){
+//             res.status(500).json(err)
+//         }
+// };
 exports.blogdelete = async (req, res) => {
     const blogData = await bloguser.findByIdAndDelete(req.params.id);
     try{
@@ -48,3 +47,27 @@ exports.blogdelete = async (req, res) => {
         res.status(500).json(err)
     }
 };
+// function findByUserID()=>async(res,req){
+
+// }
+exports.getbyuserID = async(req, res) =>{
+    try{
+    let blogData = await bloguser.find({userId: req.params.id});
+    res.json(blogData);
+    // console.log(blogData[1]);
+    }catch(err){
+        console.log(err);
+    }
+}
+
+exports.blogupdate = async(req, res) =>{
+    try{
+        let blogData = await bloguser.findByIdAndUpdate(req.params.id,{
+            $set:req.body
+        });
+        res.json(blogData)
+    }
+    catch(err){
+        console.log(err);
+    }
+}

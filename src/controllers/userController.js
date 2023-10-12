@@ -13,7 +13,7 @@ const jwt = require('jsonwebtoken');
 exports.signup = async (req, res) => {
     const username = req.body.username;
     const userData = await UsersModel.findOne({ username: username });
-    if (!userData) {
+    if (userData === null) {
         const salt = await bcrypt.genSalt(saltRounds);
         req.body.password = await bcrypt.hash(req.body.password, salt);
         UsersModel.create(req.body)
@@ -27,7 +27,6 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
-        console.log(req.body);
         const { username, password } = req.body;
         const userData = await UsersModel.findOne({ username: username });
         if (userData) {
