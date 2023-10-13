@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const blogController = require('../controllers/blogController');
 const userController = require('../controllers/userController');
-// const {blogadd,blogupdate,blogget,blogdelete} = require('../../index');
+const projectController = require('../controllers/projectController');
+
 
 //Blog routes
 
@@ -19,6 +20,17 @@ router.post("/signup", userController.signup);
 router.post("/login", userController.login);
 router.get("/getprofiledata/:id", userController.getprof);
 router.put("/updateprofile/:id", userController.updateprof);
+
+
+
+//project routes
+
+router.post("/projectuser/projectadd", projectController.projectadd);
+router.get("/projectuser/projectget", projectController.projectget);
+router.put("/projectuser/projectupdate/:id", projectController.projectupdate);
+router.delete("/projectuser/projectdelete/:id", projectController.projectdelete);
+router.get("/projectuser/get/:id", projectController.projectgetbyid);
+router.get("/projectuser/getbyuserID/:id", projectController.getbyuserID);
 
 
 module.exports = router;
