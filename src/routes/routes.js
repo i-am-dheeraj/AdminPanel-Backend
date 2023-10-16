@@ -3,6 +3,7 @@ const router = express.Router();
 const blogController = require('../controllers/blogController');
 const userController = require('../controllers/userController');
 const projectController = require('../controllers/projectController');
+const enquiryController = require('../controllers/enquiryController');
 
 
 //Blog routes
@@ -32,5 +33,13 @@ router.delete("/projectuser/projectdelete/:id", projectController.projectdelete)
 router.get("/projectuser/get/:id", projectController.projectgetbyid);
 router.get("/projectuser/getbyuserID/:id", projectController.getbyuserID);
 
+//enquiry routes
+
+router.post("/enquiryuser/enquiryadd", enquiryController.enquiryadd);
+router.get("/enquiryuser/enquiryget", enquiryController.enquiryget);
+router.put("/enquiryuser/enquiryupdate/:id", enquiryController.enquiryupdate);
+router.delete("/enquiryuser/enquirydelete/:id", enquiryController.enquirydelete);
+router.get("/enquiryuser/get/:id", enquiryController.enquirygetbyid);
+router.get("/enquiryuser/getbyuserID/:id", enquiryController.getbyuserID);
 
 module.exports = router;

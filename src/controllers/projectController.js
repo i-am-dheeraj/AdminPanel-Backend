@@ -29,6 +29,7 @@ exports.projectget = async (req, res) => {
 };
 exports.projectupdate = async (req, res) => {
     try{
+        console.log("datta7",req.params.id);
             const projectData = await projectuser.findByIdAndUpdate(req.params.id, { $set: req.body },
             { new: true });
             
